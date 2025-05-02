@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
     videoCards.forEach(card => {
         card.addEventListener('click', function() {
             const videoId = this.getAttribute('data-video-id');
-            videoIframe.src = `https://www.youtube.com/embed/watch?v=J-pedng44TQ&t=64s?autoplay=1&rel=0&modestbranding=1`;
+            videoIframe.src = `https://www.youtube.com/embed/${videoId}?`;
             videoModal.style.display = 'flex';
             document.body.style.overflow = 'hidden';
         });
@@ -222,3 +222,40 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error(err);
       });
   }
+
+
+  // دالة نسخ النص
+function copyToClipboard(button) {
+    // الحصول على العنصر الأب (الحاوية) ثم البحث عن عنصر الكود داخله
+    const codeElement = button.parentElement.querySelector('.s37-code');
+    const textToCopy = codeElement.textContent;
+    
+    // استخدام Clipboard API للنسخ
+    navigator.clipboard.writeText(textToCopy).then(() => {
+        // تغيير نص الزر مؤقتًا للإشارة إلى أن النسخ تم
+        const originalText = button.textContent;
+        button.textContent = 'تم النسخ!';
+        button.style.background = 'linear-gradient(45deg, #4CAF50, #2E7D32)';
+        
+        // إعادة الزر إلى حالته الأصلية بعد ثانيتين
+        setTimeout(() => {
+            button.textContent = originalText;
+            button.style.background = 'linear-gradient(45deg, #ff6ec7, #7873f5)';
+        }, 2000);
+    }).catch(err => {
+        console.error('Failed to copy text: ', err);
+        button.textContent = 'خطأ في النسخ';
+        button.style.background = 'linear-gradient(45deg, #f44336, #c62828)';
+    });
+}
+
+// إضافة حدث تحميل الصفحة لضبط بعض الأمور
+document.addEventListener('DOMContentLoaded', function() {
+    // يمكنك إضافة أي تهيئات إضافية هنا إذا لزم الأمر
+});
+
+
+
+
+
+
