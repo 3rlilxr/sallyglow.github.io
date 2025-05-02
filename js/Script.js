@@ -253,9 +253,3 @@ function copyToClipboard(button) {
 document.addEventListener('DOMContentLoaded', function() {
     // يمكنك إضافة أي تهيئات إضافية هنا إذا لزم الأمر
 });
-
-
-
-
-
-
